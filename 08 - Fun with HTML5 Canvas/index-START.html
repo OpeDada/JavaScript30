@@ -27,12 +27,13 @@
   ctx.moveTo(lastX, lastY)
   // go to
   ctx.lineTo(e.offsetX, e.offsetY)
-  ctx.stroke()
+  ctx.stroke();
   [lastX, lastY] = [e.offsetX, e.offsetY]
+
   }
 
   canvas.addEventListener('mousedown', (e) => {
-    isDrawing = true
+    isDrawing = true;
     [lastX, lastY] = [e.offsetX, e.offsetY]
 
   })
