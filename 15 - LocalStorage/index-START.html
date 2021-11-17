@@ -30,9 +30,21 @@
   const itemsList = document.querySelector('.plates');
   const items = [];
 
+  function addItem(e) {
+    e.preventDefault()
+    const text = (this.querySelector('[name=item]')).value // the this here refers to the particular form where the input name = item
+    const item = {
+      text, // ES6 short hand property
+      done: false
+    }
+    items.push(item)
+    this.reset() // this is a form element and the form element has a method called reset.
+  }
+
+  addItems.addEventListener('submit', addItem)
+
 </script>
 
 
 </body>
 </html>
-
