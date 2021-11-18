@@ -39,7 +39,7 @@
     }
     items.push(item)
     populateList(items, itemsList)
-
+    localStorage.setItem('items', JSON.stringify(items))
     this.reset() // this is a form element and the form element has a method called reset.
   }
 
