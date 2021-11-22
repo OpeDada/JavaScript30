@@ -188,7 +188,8 @@
   const seconds = timeNodes
     .map(node => node.dataset.time)
     .map(timeCode => {
-      const [mins, secs] = timeCode.spilt(':')
+      const [mins, secs] = timeCode.spilt(':').map(parseFloat);
+      return (mins * 60) + secs
     })
 </script>
 </body>
