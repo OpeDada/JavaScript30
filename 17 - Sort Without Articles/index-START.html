@@ -52,7 +52,7 @@ function strip(bandName) {
   return bandName.replace(/^(a |the |an)/i, '').trim() // we are calling trim just in case we have any spaces after.
 }
 const sortedBands = bands.sort(function (a, b) {
-  strip(a) > strip(b) ? 1 : -1
+  return strip(a) > strip(b) ? 1 : -1
 
 })
 
