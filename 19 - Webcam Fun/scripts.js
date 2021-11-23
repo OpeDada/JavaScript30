@@ -34,11 +34,11 @@ function paintToCanvas() {
     // pixels = rgbSplit(pixels);
     // ctx.globalAlpha = 0.1; //putting a transparency of 10% of the current image on top(10 layers)
 
-    pixels = greenScreen(pi);
+    pixels = greenScreen(pixels);
 
     // put them back
     ctx.putImageData(pixels, 0, 0);
-    debugger;
+    // debugger;
   }, 16);
 }
 
