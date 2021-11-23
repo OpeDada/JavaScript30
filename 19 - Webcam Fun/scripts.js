@@ -11,7 +11,17 @@ function getVideo() {
       console.log(localMediaStream);
       video.srcObject = localMediaStream;
       video.play();
+    })
+    .catch((err) => {
+      console.error(`oh no!`, err);
     });
 }
 
-getVideo();
+function paintToCanvas() {
+  const width = video.videoWidth;
+  const height = video.videoHeight;
+  canvas.width = width;
+  canvas.height = height;
+}
+
+// getVideo();
