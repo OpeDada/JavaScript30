@@ -23,8 +23,15 @@ function paintToCanvas() {
   canvas.width = width;
   canvas.height = height;
 
-  setInterval(() => {
+  return setInterval(() => {
     ctx.drawImage(video, 0, 0, width, height);
+    // take the pixels out
+    let pixels = ctx.getImageData(0, 0, width, height);
+    // play with them
+    pixels = redEffect(pixels);
+    // put them back
+    ctx.putImageData(pixels, 0, 0);
+    debugger;
   }, 16);
 }
 
@@ -40,6 +47,14 @@ function takePhoto() {
   link.setAttribute("download", "awesome");
   link.innerHTML = `<img src="${data}" alt="awesome me!" />`;
   strip.insertBefore(link, strip.firstChild);
+}
+
+function redEffect(pixels) {
+  for (let i = 0; i < pixels.length; i += 4) {
+    pixels.data[i + 0] = pixels.data[i + 0] + 200; // RED
+    pixels.data[i + 1] = pixels.data[i + 1] - 50; // GREEN
+    pixels.data[i + 2] = pixels.data[i + 2] * 0.5; // Blue
+  }
 }
 
 // getVideo();
