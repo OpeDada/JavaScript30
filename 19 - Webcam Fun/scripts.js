@@ -28,7 +28,14 @@ function paintToCanvas() {
     // take the pixels out
     let pixels = ctx.getImageData(0, 0, width, height);
     // play with them
-    pixels = redEffect(pixels);
+
+    // pixels = redEffect(pixels);
+
+    // pixels = rgbSplit(pixels);
+    // ctx.globalAlpha = 0.1; //putting a transparency of 10% of the current image on top(10 layers)
+
+    pixels = greenScreen(pi);
+
     // put them back
     ctx.putImageData(pixels, 0, 0);
     debugger;
@@ -66,7 +73,34 @@ function rgbSplit(pixels) {
   }
   return pixels;
 }
+function greenScreen(pixels) {
+  const levels = {};
 
-// getVideo();
+  document.querySelectorAll(".rgb input").forEach((input) => {
+    levels[input.name] = input.value;
+  });
+
+  for (i = 0; i < pixels.data.length; i = i + 4) {
+    red = pixels.data[i + 0];
+    green = pixels.data[i + 1];
+    blue = pixels.data[i + 2];
+    alpha = pixels.data[i + 3];
+
+    if (
+      red >= levels.rmin &&
+      green >= levels.gmin &&
+      blue >= levels.bmin &&
+      red <= levels.rmax &&
+      green <= levels.gmax &&
+      blue <= levels.bmax
+    ) {
+      // take it out!
+      pixels.data[i + 3] = 0;
+    }
+  }
+
+  return pixels;
+}
+getVideo();
 
 video.addEventListener("canplay", paintToCanvas);
