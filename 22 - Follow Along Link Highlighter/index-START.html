@@ -27,7 +27,20 @@
 
   <script>
     // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+
+    const triggers = document.querySelectorAll('a')
+    const highlight = document.createElement('span') // create a span
+    highlight.classList.add('highlight') // add a class of highlight
+    document.body.append(highlight) // put it into the DOM
+
+    // listen for when someone enters a link
+
+    function highlightLink() {
+      const linkCoords = this.getBoundingClientRect() // this refers to what was triggered, i.e each of the links below
+      console.log(linkCoords)
+    }
+
+    triggers.forEach(a => a.addEventListener('mouseenter', highlightLink))
   </script>
 </body>
 </html>
-
