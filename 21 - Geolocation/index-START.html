@@ -67,6 +67,9 @@
       console.log(data)
     speed.textContent = data.coords.speed
     arrow.style.transform = `rotate(${data.coords.heading}deg)`// rotate compass
+    }, (err) => {
+      console.err(err)
+      alert("Please allow!")
     })
   </script>
 </body>
