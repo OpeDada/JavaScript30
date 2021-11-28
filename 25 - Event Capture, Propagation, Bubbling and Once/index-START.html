@@ -46,10 +46,11 @@
 
   function logText(e) {
     console.log(this.classList.value) //this here refers to the divs.
+    e.stopPropagation() // means stop bubbling. just pick the one i am clicking
   }
 
   divs.forEach(div => div.addEventListener('click', logText, {
-    capture: false // true will mean the function will run the divs from up to down, not down to up
+    capture: false // down to up. true will mean the function will run the divs from up to down.
     }))
 </script>
 </body>
