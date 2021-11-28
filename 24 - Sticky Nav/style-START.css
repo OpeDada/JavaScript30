@@ -27,6 +27,11 @@ body {
   transition: transform 0.5s;
 }
 
+/* when the body has a class of fixed-nav, the site-wrap should have this element below */
+.fixed-nav .site-wrap {
+  transform: scale(1);
+}
+
 header {
   text-align: center;
   height: 50vh;
