@@ -49,12 +49,22 @@
     toggle()
   }
 
-  function toggle() {
+  function toggle(startOver = true) {
     speechSynthesis.cancel() // stop it from speaking
-    speechSynthesis.speak(msg)
+    if(startOver) {
+      speechSynthesis.speak(msg)
+    }
   }
+
+  function setOption() {
+    msg[this.name] = this.value // set what property changed to what changed
+    toggle()
+  }
+
   speechSynthesis.addEventListener('voiceschanged', populateVoices)
   voicesDropdown.addEventListener('change', setVoice)
+
+  options.forEach(option => option.addEventListener('change', setOption))
 </script>
 
 </body>
