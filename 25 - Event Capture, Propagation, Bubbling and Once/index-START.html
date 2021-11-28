@@ -43,6 +43,7 @@
 <button></button>
 <script>
   const divs = document.querySelectorAll('div')
+  const button = document.querySelector('button')
 
   function logText(e) {
     console.log(this.classList.value) //this here refers to the divs.
@@ -50,8 +51,15 @@
   }
 
   divs.forEach(div => div.addEventListener('click', logText, {
-    capture: false // down to up. true will mean the function will run the divs from up to down.
+    capture: false, // down to up. true will mean the function will run the divs from up to down.
+    once: true // it will listen for a click and unbind itself, i.e the event only runs once
     }))
+
+  button.addEventListener('click', () => {
+    console.log("click!")
+  }, {
+    once: true //an example where this can be used is in a store checkout where you dont want someone to click a button more than once.
+  })
 </script>
 </body>
 </html>
