@@ -43,7 +43,12 @@
     .map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`)
     .join('')
   }
+
+  function setVoice() {
+    msg.voice = voices.find(voice => voice.name === this.value) //loop over every voice and find the one whose name attribute is the same as the option that was currently selected
+  }
   speechSynthesis.addEventListener('voiceschanged', populateVoices)
+  voicesDropdown.addEventListener('change', setVoice)
 </script>
 
 </body>
