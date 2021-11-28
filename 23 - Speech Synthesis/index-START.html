@@ -46,6 +46,12 @@
 
   function setVoice() {
     msg.voice = voices.find(voice => voice.name === this.value) //loop over every voice and find the one whose name attribute is the same as the option that was currently selected
+    toggle()
+  }
+
+  function toggle() {
+    speechSynthesis.cancel() // stop it from speaking
+    speechSynthesis.speak(msg)
   }
   speechSynthesis.addEventListener('voiceschanged', populateVoices)
   voicesDropdown.addEventListener('change', setVoice)
