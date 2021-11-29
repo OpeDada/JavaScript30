@@ -40,9 +40,11 @@
   let startX
   let scrollLeft
 
-  slider.addEventListener('mousedown', () => {
+  slider.addEventListener('mousedown', (e) => {
     isDown = true
     slider.classList.add('active')
+    startX = e.pageX - slider.offsetLeft // where was initially clicked
+    scrollLeft = slider.scrollLeft
   })
   slider.addEventListener('mouseleave', () => {
     isDown = false
@@ -52,10 +54,13 @@
     isDown = false
     slider.classList.remove('active')
   })
-  slider.addEventListener('mousemove', () => {
+  slider.addEventListener('mousemove', (e) => {
     if(!isDown) return; // stop the function from running
-
-  })
+    e.preventDefault() // this will stop the selection of text or any other unintentional actions
+    const x =  e.pageX - slider.offsetLeft // recalculate everytime ee move the mouse
+    const walk = (x - startX) * 3
+    slider.scrollLeft = scrollLeft - walk
+})
 </script>
 
   </body>
