@@ -4,6 +4,9 @@ const endTime = document.querySelector(".display__end-time");
 const buttons = document.querySelectorAll("[data-time]");
 
 function timer(seconds) {
+  // clear any existing timers
+  clearInterval(countdown);
+
   const now = Date.now();
   const then = now + seconds * 1000;
   displayTimeLeft(seconds);
@@ -42,7 +45,17 @@ function displayEndTime(timestamp) {
 }
 
 function startTimer() {
-  console.log(this);
+  console.log(this.dataset);
+  const seconds = parseInt(this.dataset.time);
+  timer(seconds);
 }
 
 buttons.forEach((button) => button.addEventListener("click", startTimer));
+
+document.customForm.addEventListener("submit", function (e) {
+  // custom form is the form name within the html
+  e.preventDefault();
+  const mins = this.minutes.value; //this is the form
+  timer(mins * 60);
+  this.reset(); // to clear out the value and rest the form
+});
