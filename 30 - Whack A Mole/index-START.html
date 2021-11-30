@@ -37,6 +37,24 @@
   const scoreBoard = document.querySelector('.score');
   const moles = document.querySelectorAll('.mole');
 
+  let lastHole;
+
+  function randomTime(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
+  }
+
+  function randomHole(holes) {
+    // console.log(holes.length)
+    const idx = Math.floor(Math.random() * holes.length)
+    const hole = holes[idx]
+    if(hole === lastHole) {
+    return randomHole(holes)
+    }
+    // console.log(hole)
+    lastHole = hole // save the reference to the one that got popped up the last time the function was called
+    return hole
+  }
+
 </script>
 </body>
 </html>
